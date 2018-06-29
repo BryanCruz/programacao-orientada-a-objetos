@@ -1,0 +1,45 @@
+package autocorrecao;
+
+public class MultiplaEscolha extends Pergunta {
+
+	private Alternativa[] alternativas;
+
+	public MultiplaEscolha(String enunciado) {
+		super(enunciado);
+		this.alternativas = new Alternativa[2];
+	}
+	
+	public MultiplaEscolha(String enunciado, int numAlternativas) {
+		super(enunciado);
+		this.alternativas = new Alternativa[numAlternativas];
+	}
+
+	public void adicionaAlternativa(String novaAlternativa) {
+		try{
+			adicionaAlternativa(new Alternativa(novaAlternativa));
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	
+	public void adicionaAlternativa(Alternativa novaAlternativa) throws Exception {
+		boolean conseguiuAdicionar = false;
+		
+		for (int i = 0; i < alternativas.length && !conseguiuAdicionar; i++)
+			if (alternativas[i] == null) {
+				alternativas[i] = novaAlternativa;
+				conseguiuAdicionar = true;
+			}
+			
+		if (conseguiuAdicionar)
+			throw new Exception("Nao adicionou alternativa.");
+	}
+	
+	@Override
+	public void imprimirPergunta() {
+		System.out.println("Enunciado: " + this.getEnunciado());
+		for (Alternativa elemento: this.alternativas)
+			System.out.println("- " + elemento.getTexto());
+	}
+	
+}
