@@ -1,0 +1,7 @@
+package objetos;
+
+public class NotebookGrande extends Notebook{
+	public NotebookGrande(String serial){
+		super(serial, 25);
+	}
+}
